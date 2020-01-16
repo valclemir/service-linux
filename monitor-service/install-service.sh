@@ -9,9 +9,8 @@ etc="/etc/systemd/system/${nomeServico}.service"
 
 DIRSERVICE="/usr/bin/${nomeServico}-service.sh"
 
-echo $DIRSERVICE
 
-sudo cp -r $nomeServico-service.sh $DIRSERVICE
+sudo cp -r $nomeServico-service.sh $DIRSERVICE #copia o arquivo do servico para o caminho /usr/bin/
 sudo chmod +x $DIRSERVICE
 
 #@ ARQUIVO DE CONFIGURACAO DO SERVICO 
@@ -41,10 +40,6 @@ sudo chmod 644 $etc
 
 sudo systemctl start $nomeServico
 #sudo systemctl status teste
-
-#sudo systemctl stop classificador
-#sudo systemctl restart classificador
-
 sudo systemctl enable $nomeServico #@ Habilita o servico para iniciar com o SO 
 
 echo "SERVICO CONFIGURADO COM SUCESSO!"
