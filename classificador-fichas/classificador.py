@@ -8,7 +8,7 @@ def read_json():
         return json_read['config']
 
 
-dsn_tns = cx_Oracle.makedsn('172.17.0.4', '1521', service_name='ORCLPDB1.localdomain')
+dsn_tns = cx_Oracle.makedsn('10.85.2.130', '49161', service_name='ORCLPDB1.localdomain')
 con = cx_Oracle.connect(user=r'sys', password='Oradoc_db1', dsn=dsn_tns, mode=cx_Oracle.SYSDBA)
 
 cur = con.cursor()
