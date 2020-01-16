@@ -1,9 +1,8 @@
 import os 
 import cx_Oracle
-from datetime import datetime
 import json
 
-status = os.system('systemctl is-active --quiet classificador')
+status = os.system('systemctl is-active --quiet classificador') #Obtem o status do servico
 
 def read_config_db():
 	#Database configuration
