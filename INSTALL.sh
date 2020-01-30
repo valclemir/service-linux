@@ -1,17 +1,20 @@
 #!/bin/bash
 
-yum install python3 -y
-yum install jq -y #@ para ler arquivos em formato json
-yum install python3-pip -y #@ Responsavel por baixar pacotes python
+#
+sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+sudo yum install python3 -y
+sudo yum install jq -y #@ para ler arquivos em formato json
+sudo yum install python3-pip -y #@ Responsavel por baixar pacotes python
 
 # INSTALL ORACLE INSTANT CLIENT #
 #################################
 # Install basic dependencies
-yum -y install libaio bc flex
+sudo yum -y install libaio bc flex
 sudo dnf install libnsl
 
-rpm -ivh upload/oracle-instantclient11.2-basic-*
-rpm -ivh upload/oracle-instantclient11.2-devel-*
+sudo rpm -ivh upload/oracle-instantclient11.2-basic-*
+sudo rpm -ivh upload/oracle-instantclient11.2-devel-*
 
 # SET ENVIRONMENT VARIABLES #
 #############################
@@ -28,4 +31,4 @@ sudo ldconfig
 # INSTALL cx_Oracle #
 #####################
 
-pip3 install cx_Oracle
+sudo pip3 install cx_Oracle

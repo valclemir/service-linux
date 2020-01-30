@@ -2,28 +2,23 @@ import os
 import cx_Oracle
 import json
 
-status = os.system('systemctl is-active --quiet classificador') #Obtem o status do servico
+status_service_extrator = os.system('systemctl is-active --quiet extrator') #Obtem o status do servico de extracao
+status_service_inferencia = os.system('systemctl is-active --quiet inferencia') #Obtem o status do servico da inferencia
+statu_service_classificador = os.system('systemctl is-active --quiet classificador) #Obtem o status do servico de classificacao da fila da ficha
+
+DIR_CONFIG_DB = '/home/projetoia/service-linux/config-db.json'
 
 def read_config_db():
-	#Database configuration
-	with open('config-db.json') as config_file:
-		data = json.load(config_file)
-	ip = data['ip']
-	port = data['port']
-	service_name = data['service_name']
-	user = data['user']
-	password = data['password']
-	dsn_tns = cx_Oracle.makedsn(ip, port, service_name=service_name)
-	con = cx_Oracle.connect(user=user, password=password, dsn=dsn_tns, mode=cx_Oracle.SYSDBA)
-
-	return con 
+    with open(DIR_CONFIG_DB, 'r') as read:
+        read_json = json.load(read)
+    return read_json
 
 
 def save_status_service(status):
 	con = read_config_db()
 	cur = con.cursor()
 
-	sql = (f""" INSERT INTO TBOD_CLASSIFICADOR_STATUS_SERVICO(status) VALUES ('{status}') """)
+	sql = (f""" INSERT INTO TBIA_FIC_STATUS_SERVICO(status) VALUES ('{status}') """)
 	cur.execute(sql)
 	con.commit()
 	con.close()
